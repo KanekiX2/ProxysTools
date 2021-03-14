@@ -7,14 +7,15 @@
 
 ---- 
 
-## ❓ How to start and download Proxy Tools
----  
-```bash
+## ❓ How to start and download Proxy Tools  
+```
 git clone https://github.com/KanekiX2/ProxysTools.git
 cd ProxyTools
 py ProxyTools.py
 ```
 
-## 📷 Demo
----  
-![DEMO](https://cdn.discordapp.com/attachments/814116223126208602/820483276410060800/unknown.png)
+## 📷 Demo  
+![DEMO](https://cdn.discordapp.com/attachments/814116223126208602/820483276410060800/unknown.png)  
+  
+## 💸 To support me  
+<a href="https://www.buymeacoffee.com/KanekiX2" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" ></a>
