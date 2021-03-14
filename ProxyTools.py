@@ -66,10 +66,7 @@ def proxycheck():
         a = True
         while a:
             Thread(target=ProxyChecker,args=(proxy, site)).start()
-            a = False
-
-    print(f"[{Fore.RESET}!{Fore.MAGENTA}] - All proxy checked ! "+Fore.RESET)
-        
+            a = False        
 
 
 def scrap_http():
@@ -359,6 +356,46 @@ def scrap_http():
 	try:
 	    r = requests.get("https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.txt")
 	    text = r.text
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("http://www.proxylists.net/http_highanon.txt")
+	    text = r.text
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("https://webanetlabs.net/freeproxy/proxylist_at_24.05.2016.txt")
+	    text = r.text
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+
+	try:
+	    r = requests.get("https://files.a-parser.com/Proxy/alive_public_proxy_200615.txt")
+	    text = r.text.replace('http://','')
 
 	    lines = 0
 	    with open(output, 'a+') as f:
