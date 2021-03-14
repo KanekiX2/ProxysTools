@@ -381,7 +381,7 @@ def scrap_http():
 
 	try:
 	    r = requests.get("https://webanetlabs.net/freeproxy/proxylist_at_24.05.2016.txt")
-	    text = r.text
+	    text = r.text.replace('\n','')
 
 	    lines = 0
 	    with open(output, 'a+') as f:
@@ -395,7 +395,7 @@ def scrap_http():
 
 	try:
 	    r = requests.get("https://files.a-parser.com/Proxy/alive_public_proxy_200615.txt")
-	    text = r.text.replace('http://','')
+	    text = r.text.replace('http://','').replace('socks://','')
 
 	    lines = 0
 	    with open(output, 'a+') as f:
