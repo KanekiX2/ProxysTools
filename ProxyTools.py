@@ -1,6 +1,7 @@
-import requests, os, colorama, sys, time
+import requests, os, colorama, sys, time, re, json, bs4
 from colorama import Fore
 from threading import Thread
+from bs4 import BeautifulSoup
 
 esp = " " * 50
 
@@ -67,199 +68,307 @@ def proxycheck():
         while a:
             Thread(target=ProxyChecker,args=(proxy, site)).start()
             a = False
+
+    print(f"[{Fore.RESET}!{Fore.MAGENTA}] - All proxy checked ! "+Fore.RESET)
         
 
 
 def scrap_http():
-    output = input(Fore.MAGENTA+f"\n\n[{Fore.RESET}?{Fore.MAGENTA}] - Output file (default: proxies.txt): "+Fore.RESET)
+	output = input(Fore.MAGENTA+f"\n\n[{Fore.RESET}?{Fore.MAGENTA}] - Output file (default: proxies.txt): "+Fore.RESET)
 
-    if output == "":
-        output = "proxies.txt"
+	if output == "":
+	    output = "proxies.txt"
 
-    with open(output, 'w+') as f:
-            f.write("")
+	with open(output, 'w+') as f:
+		f.write("")
 
-    try:      
-        r = requests.get("https://raw.githubusercontent.com/scidam/proxy-list/master/proxy.json")
-        data = r.json()
+	try:      
+	    r = requests.get("https://raw.githubusercontent.com/scidam/proxy-list/master/proxy.json")
+	    data = r.json()
 
-        fst = data['proxies']
-        lines = 0
-        for p in fst:
-            ip = p['ip']
-            port = p['port']
-            proxies = ip+":"+port
+	    fst = data['proxies']
+	    lines = 0
+	    for p in fst:
+	        ip = p['ip']
+	        port = p['port']
+	        proxies = ip+":"+port
 
-            with open(output, 'a+') as f:
-                lines += 1
-                f.write(proxies+"\n")
+	        with open(output, 'a+') as f:
+	            lines += 1
+	            f.write(proxies+"\n")
 
-        print(Fore.MAGENTA+f"\n\n[{Fore.RESET}+{Fore.MAGENTA}] - Successfuly scraped and saved {lines} proxys !"+Fore.RESET)
-    except:
-        print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
-    try:
-        r = requests.get("https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all")
-        text = r.text.replace('\n','')
+	try:
+	    r = requests.get("https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all")
+	    text = r.text.replace('\n','')
 
-        with open(output, 'a+') as f:
-            f.write(text)
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
 
-        lines = 0
-        with open(output, 'r') as f:
-            for line in f:
-                lines = lines + 1
-            f.close()
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
-        print(Fore.MAGENTA+f"[{Fore.RESET}+{Fore.MAGENTA}] - Successfuly scraped and saved {lines} proxys !"+Fore.RESET)
-    
-    except:
-        print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+	try:
+	    r = requests.get("https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt")
+	    text = r.text
 
-    try:
-        r = requests.get("https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt")
-        text = r.text
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
 
-        with open(output, 'a+') as f:
-            f.write(text)
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
-        lines = 0
-        with open(output, 'r') as f:
-            for line in f:
-                lines = lines + 1
-            f.close()
+	try:
+	    r = requests.get("https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt")
+	    text = r.text
 
-        print(Fore.MAGENTA+f"[{Fore.RESET}+{Fore.MAGENTA}] - Successfuly scraped and saved {lines} proxys !"+Fore.RESET)
-    
-    except:
-        print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
 
-    try:
-        r = requests.get("https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt")
-        text = r.text
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
-        with open(output, 'a+') as f:
-            f.write(text)
+	try:
+	    r = requests.get("https://raw.githubusercontent.com/opsxcq/proxy-list/master/list.txt")
+	    text = r.text
 
-        lines = 0
-        with open(output, 'r') as f:
-            for line in f:
-                lines = lines + 1
-            f.close()
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
 
-        print(Fore.MAGENTA+f"[{Fore.RESET}+{Fore.MAGENTA}] - Successfuly scraped and saved {lines} proxys !"+Fore.RESET)
-    
-    except:
-        print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
-    try:
-        r = requests.get("https://raw.githubusercontent.com/opsxcq/proxy-list/master/list.txt")
-        text = r.text
+	try:      
+	    r = requests.get("https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.json")
+	    data = r.json()
 
-        with open(output, 'a+') as f:
-            f.write(text)
+	    fst = data['proxynova']
+	    lines = 0
+	    for p in fst:
+	        ip = p['ip']
+	        port = p['port']
+	        proxies = ip+":"+port
 
-        lines = 0
-        with open(output, 'r') as f:
-            for line in f:
-                lines = lines + 1
-            f.close()
+	        with open(output, 'a+') as f:
+	            lines += 1
+	            f.write(proxies+"\n")
 
-        print(Fore.MAGENTA+f"[{Fore.RESET}+{Fore.MAGENTA}] - Successfuly scraped and saved {lines} proxys !"+Fore.RESET)
-    
-    except:
-        print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+	    
+	except:
+	     print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
-    try:      
-        r = requests.get("https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.json")
-        data = r.json()
+	try:
+	    r = requests.get("https://raw.githubusercontent.com/shiftytr/proxy-list/master/proxy.txt")
+	    text = r.text
 
-        fst = data['proxynova']
-        lines = 0
-        for p in fst:
-            ip = p['ip']
-            port = p['port']
-            proxies = ip+":"+port
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
 
-            with open(output, 'a+') as f:
-                lines += 1
-                f.write(proxies+"\n")
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
-        print(Fore.MAGENTA+f"[{Fore.RESET}+{Fore.MAGENTA}] - Successfuly scraped and saved {lines} proxys !"+Fore.RESET)
-    except:
-         print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+	try:
+	    r = requests.get("https://raw.githubusercontent.com/clarketm/proxy-list/master/proxy-list-raw.txt")
+	    text = r.text
 
-    try:
-        r = requests.get("https://raw.githubusercontent.com/shiftytr/proxy-list/master/proxy.txt")
-        text = r.text
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
 
-        with open(output, 'a+') as f:
-            f.write(text)
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
-        lines = 0
-        with open(output, 'r') as f:
-            for line in f:
-                lines = lines + 1
-            f.close()
+	try:
+	    r = requests.get("https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/http.txt")
+	    text = r.text
 
-        print(Fore.MAGENTA+f"[{Fore.RESET}+{Fore.MAGENTA}] - Successfuly scraped and saved {lines} proxys !"+Fore.RESET)
-    
-    except:
-        print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
 
-    try:
-        r = requests.get("https://raw.githubusercontent.com/clarketm/proxy-list/master/proxy-list-raw.txt")
-        text = r.text
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
-        with open(output, 'a+') as f:
-            f.write(text)
+	try:
+	    r = requests.get("https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/https.txt")
+	    text = r.text
 
-        lines = 0
-        with open(output, 'r') as f:
-            for line in f:
-                lines = lines + 1
-            f.close()
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
 
-        print(Fore.MAGENTA+f"[{Fore.RESET}+{Fore.MAGENTA}] - Successfuly scraped and saved {lines} proxys !"+Fore.RESET)
-    
-    except:
-        print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
-    try:
-        r = requests.get("https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/http.txt")
-        text = r.text
+	try:
+		r = requests.get("https://www.sslproxies.org/")
+		html = r.text
+		matches = re.findall(r"(\d+?\.\d+?\.\d+?\.\d+).*?(\d{1,5}).*?(no)", html)
+		lines = 0
 
-        with open(output, 'a+') as f:
-            f.write(text)
+		for match in matches:
+			proxy = (match[0]+":"+match[1])
 
-        lines = 0
-        with open(output, 'r') as f:
-            for line in f:
-                lines = lines + 1
-            f.close()
+			with open(output, 'a+') as f:
+				f.write(proxy+"\n")
+				lines += 1
 
-        print(Fore.MAGENTA+f"[{Fore.RESET}+{Fore.MAGENTA}] - Successfuly scraped and saved {lines} proxys !"+Fore.RESET)
-    
-    except:
-        print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+		pass
 
-    try:
-        r = requests.get("https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/https.txt")
-        text = r.text
+		
+	
+	except:
+		pass
 
-        with open(output, 'a+') as f:
-            f.write(text)
+	try:
+		r = requests.get("https://free-proxy-list.net/")
+		html = r.text
+		matches = re.findall(r"(\d+?\.\d+?\.\d+?\.\d+).*?(\d{1,5}).*?(no)", html)
+		lines = 0
 
-        lines = 0
-        with open(output, 'r') as f:
-            for line in f:
-                lines = lines + 1
-            f.close()
+		for match in matches:
+			proxy = (match[0]+":"+match[1])
 
-        print(Fore.MAGENTA+f"[{Fore.RESET}+{Fore.MAGENTA}] - Successfuly scraped and saved {lines} proxys !"+Fore.RESET)
-    
-    except:
-        print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+			with open(output, 'a+') as f:
+				f.write(proxy+"\n")
+				lines += 1
+
+		
+
+	except:
+		pass
+
+	try:
+	    r = requests.get("http://rootjazz.com/proxies/proxies.txt")
+	    text = r.text
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("http://ab57.ru/downloads/proxylist.txt")
+	    text = r.text
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("http://alexa.lr2b.com/proxylist.txt")
+	    text = r.text
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("https://raw.githubusercontent.com/mmpx12/proxy-list/master/http.txt")
+	    text = r.text.replace('</body>','').replace('</html>','').replace('<body bgcolor="white">','').replace('<center><h1>522 Origin Connection Time-out</h1></center>','').replace('<head><title>522 Origin Connection Time-out</title></head>','').replace('<hr><center>cloudflare-nginx</center>','').replace('<html>','')
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("https://raw.githubusercontent.com/mmpx12/proxy-list/master/https.txt")
+	    text = r.text.replace('</body>','').replace('</html>','').replace('<body bgcolor="white">','').replace('<center><h1>522 Origin Connection Time-out</h1></center>','').replace('<head><title>522 Origin Connection Time-out</title></head>','').replace('<hr><center>cloudflare-nginx</center>','').replace('<html>','')
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+		r = requests.get('https://proxy-daily.com/')
+		data = r.text
+		soup = BeautifulSoup(data, 'lxml')
+		
+		alist = soup.find("div", class_="centeredProxyList freeProxyStyle").text.strip()
+		
+		with open(output, 'a+') as f:
+			f.write(alist)
+
+		lines = 0
+		with open(output, 'r') as f:
+		    for line in f:
+		        lines = lines + 1
+		    f.close()
+
+		
+
+	except:
+		print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+
+	lines = 0
+	with open(output, 'r') as f:
+	    for line in f:
+	        lines = lines + 1
+	    f.close()
+
+	print(Fore.MAGENTA+f"\n\n[{Fore.RESET}+{Fore.MAGENTA}] - {Fore.RESET}{lines}{Fore.MAGENTA} Total proxy scraped !"+Fore.RESET)
+
 
 def Main():
     global esp
