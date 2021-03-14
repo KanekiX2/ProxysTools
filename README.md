@@ -11,6 +11,7 @@
 ```
 git clone https://github.com/KanekiX2/ProxysTools.git
 cd ProxyTools
+pip install -r requirements.txt
 py ProxyTools.py
 ```
 
