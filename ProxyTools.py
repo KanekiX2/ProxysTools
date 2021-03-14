@@ -39,15 +39,15 @@ def ProxyChecker(prx, site):
 
     proxy = {'http': 'http://'+prx, 'https': 'http://'+prx}
     try:
-        r = requests.get(site, proxies=proxy,timeout=500)
+        r = requests.get(site, proxies=proxy,timeout=50)
 
-        print(Fore.GREEN+prx+Fore.RESET+"\t\t- Valid".replace("Valid",Fore.GREEN+"Valid"+Fore.RESET))
+        print(Fore.GREEN+prx+Fore.RESET+f"\t\t- Valid".replace("Valid",Fore.GREEN+"Valid"+Fore.RESET))
 
         with open("good_proxy.txt","a") as f:
             f.write(prx+"\n")
     
     except:
-    	print(Fore.RED+prx+Fore.RESET+"\t\t- Invalid".replace("Invalid",Fore.RED+"Invalid"+Fore.RESET))
+    	print(Fore.RED+prx+Fore.RESET+f"\t\t- Invalid".replace("Invalid",Fore.RED+"Invalid"+Fore.RESET))
 
 def proxycheck():
     input_file = input(Fore.MAGENTA+f"\n\n[{Fore.RESET}?{Fore.MAGENTA}] - Proxy file (default: proxies.txt): "+Fore.RESET)
@@ -353,11 +353,28 @@ def scrap_http():
 		    for line in f:
 		        lines = lines + 1
 		    f.close()
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+	    
+	try:
+	    r = requests.get("https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.txt")
+	    text = r.text
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
 		
 
 	except:
 		print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+
 
 
 	lines = 0
