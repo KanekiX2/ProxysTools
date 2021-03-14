@@ -29,30 +29,25 @@ def banner(args1,args2,args3):
 
 '''+Fore.RESET)
 
-valid = 0
-invalid = 0
-
 def RFile(file,method):
     with open(file,method) as file:
         a = [line.strip('\n') for line in file]
         return a
 
 def ProxyChecker(prx, site):
-    global valid
-    global invalid
+    global count
 
     proxy = {'http': 'http://'+prx, 'https': 'http://'+prx}
     try:
         r = requests.get(site, proxies=proxy,timeout=500)
 
         print(Fore.GREEN+prx+Fore.RESET+"\t\t- Valid".replace("Valid",Fore.GREEN+"Valid"+Fore.RESET))
-        valid += 1
 
         with open("good_proxy.txt","a") as f:
             f.write(prx+"\n")
     
     except:
-        invalid += 1
+    	pass
 
 def proxycheck():
     input_file = input(Fore.MAGENTA+f"\n\n[{Fore.RESET}?{Fore.MAGENTA}] - Proxy file (default: proxies.txt): "+Fore.RESET)
