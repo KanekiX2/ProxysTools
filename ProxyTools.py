@@ -355,7 +355,7 @@ def scrap_http():
 		    f.close()
 	except:
 	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
-	    
+
 	try:
 	    r = requests.get("https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.txt")
 	    text = r.text
@@ -368,11 +368,6 @@ def scrap_http():
 	
 	except:
 	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
-
-		
-
-	except:
-		print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
 
 
