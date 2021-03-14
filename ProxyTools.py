@@ -36,7 +36,6 @@ def RFile(file,method):
         return a
 
 def ProxyChecker(prx, site):
-    global count
 
     proxy = {'http': 'http://'+prx, 'https': 'http://'+prx}
     try:
@@ -48,7 +47,7 @@ def ProxyChecker(prx, site):
             f.write(prx+"\n")
     
     except:
-    	pass
+    	print(Fore.RED+prx+Fore.RESET+"\t\t- Invalid".replace("Invalid",Fore.RED+"Invalid"+Fore.RESET))
 
 def proxycheck():
     input_file = input(Fore.MAGENTA+f"\n\n[{Fore.RESET}?{Fore.MAGENTA}] - Proxy file (default: proxies.txt): "+Fore.RESET)
