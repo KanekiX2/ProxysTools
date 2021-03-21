@@ -39,7 +39,7 @@ def ProxyChecker(prx, site):
 
     proxy = {'http': 'http://'+prx, 'https': 'http://'+prx}
     try:
-        r = requests.get(site, proxies=proxy,timeout=50)
+        r = requests.get(site, proxies=proxy,timeout=1)
 
         print(Fore.GREEN+prx+Fore.RESET+f"\t\t- Valid".replace("Valid",Fore.GREEN+"Valid"+Fore.RESET))
 
@@ -281,7 +281,7 @@ def scrap_http():
 
 	try:
 	    r = requests.get("http://ab57.ru/downloads/proxylist.txt")
-	    text = r.text
+	    text = r.text.replace('\n','')
 
 	    lines = 0
 	    with open(output, 'a+') as f:
@@ -406,7 +406,18 @@ def scrap_http():
 	except:
 	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
+	try:
+	    r = requests.get("https://sunny9577.github.io/proxy-scraper/proxies.txt")
+	    text = r.text.replace('http://','').replace('socks://','')
 
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
 
 	lines = 0
