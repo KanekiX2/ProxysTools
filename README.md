@@ -9,10 +9,11 @@
 
 ## ❓ How to start and download Proxy Tools  
 ```
-git clone https://github.com/KanekiX2/ProxysTools.git
-cd ProxyTools
-pip install -r requirements.txt
-py ProxyTools.py
+- git clone https://github.com/KanekiX2/ProxysTools.git
+- cd ProxyTools
+- pip install -r requirements.txt
+
+- py ProxyTools.py
 ```
 
 ## 📷 Demo  
