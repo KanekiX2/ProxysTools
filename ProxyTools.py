@@ -419,6 +419,97 @@ def scrap_http():
 	except:
 	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
 
+	try:
+	    r = requests.get("https://www.proxyscan.io/download?type=http")
+	    text = r.text.replace('http://','').replace('socks://','')
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("https://www.proxyscan.io/download?type=https")
+	    text = r.text.replace('http://','').replace('socks://','')
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt")
+	    text = r.text.replace('http://','').replace('socks://','')
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("https://multiproxy.org/txt_all/proxy.txt")
+	    text = r.text.replace('http://','').replace('socks://','')
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("http://rootjazz.com/proxies/proxies.txt")
+	    text = r.text.replace('http://','').replace('socks://','')
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("http://ab57.ru/downloads/proxyold.txt")
+	    text = r.text.replace('http://','').replace('socks://','')
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
+	try:
+	    r = requests.get("https://proxy-spider.com/api/proxies.example.txt")
+	    text = r.text.replace('http://','').replace('socks://','')
+
+	    lines = 0
+	    with open(output, 'a+') as f:
+	        f.write(text)
+	        lines += 1
+	    
+	
+	except:
+	    print(Fore.MAGENTA+f"[{Fore.RED}!{Fore.MAGENTA}] - 0 Proxies Scraped"+Fore.RESET)
+
 
 	lines = 0
 	with open(output, 'r') as f:
