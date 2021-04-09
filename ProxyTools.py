@@ -38,6 +38,7 @@ def proxy_sc():
 	for link in f:
 		r = requests.get(link).text.replace('http://','').replace('socks://','')
 
+		print(link+"  Done !")
 		with open('Scraped_proxy.txt', 'a+') as file:
 			file.write(r)
 
@@ -47,6 +48,7 @@ def proxy_sc():
 	        lines = lines + 1
 	    f.close()
 
+	time.sleep(1)
 	os.system('cls||clear')
 	banner()
 	print(Fore.LIGHTBLUE_EX+"   [!] - "+f"{Fore.RESET}{lines} Proxys scraped successfuly{Fore.LIGHTBLUE_EX}..."+Fore.RESET)
