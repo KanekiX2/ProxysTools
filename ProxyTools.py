@@ -10,8 +10,8 @@ def banner():
 
 					{Fore.LIGHTMAGENTA_EX}╔═════════════════════════════════════════════╗
 					{Fore.LIGHTMAGENTA_EX}║{Fore.RESET}   {Fore.LIGHTBLUE_EX}1 -{Fore.RESET} Proxy Scraper          	      	      {Fore.LIGHTMAGENTA_EX}║{Fore.RESET}
-					{Fore.LIGHTMAGENTA_EX}║{Fore.RESET}   {Fore.LIGHTBLUE_EX}2 -{Fore.RESET} Proxy Checker  		                  {Fore.LIGHTMAGENTA_EX}║{Fore.RESET}
-					{Fore.LIGHTMAGENTA_EX}║{Fore.RESET}   {Fore.LIGHTBLUE_EX}3 -{Fore.RESET} Exit 		     	                  {Fore.LIGHTMAGENTA_EX}║{Fore.RESET}
+					{Fore.LIGHTMAGENTA_EX}║{Fore.RESET}   {Fore.LIGHTBLUE_EX}2 -{Fore.RESET} Proxy Checker  		              {Fore.LIGHTMAGENTA_EX}║{Fore.RESET}
+					{Fore.LIGHTMAGENTA_EX}║{Fore.RESET}   {Fore.LIGHTBLUE_EX}3 -{Fore.RESET} Exit 		     	              {Fore.LIGHTMAGENTA_EX}║{Fore.RESET}
 					{Fore.LIGHTMAGENTA_EX}╚════════════════════════════════ {Fore.RESET}Settings{Fore.LIGHTMAGENTA_EX} ═══╝
 
 
