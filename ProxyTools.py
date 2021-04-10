@@ -18,17 +18,33 @@ def banner():
 """+Fore.RESET)
 
 def ProxyChecker(prx, site):
-    proxy = {'http': 'http://'+prx, 'https': 'http://'+prx}
-    try:
-        r = requests.get(site, proxies=proxy,timeout=1)
+	if prx != "":
+		start_time = time.time()
+		protocols = ['https', 'socks4', 'socks5']
+		for protocol in protocols:
+			try:
+				proxy = {"'"+protocol+"'": protocol+'://' +prx}
 
-        print(Fore.LIGHTBLUE_EX+"   [!] - "+f"{Fore.RESET}{prx} Added to 'proxies.txt'{Fore.LIGHTBLUE_EX}..."+Fore.RESET)
+				r = requests.get(site, proxies=proxy, timeout=1)
 
-        with open("proxies.txt","a") as f:
-            f.write(prx+"\n")
-    
-    except:
-    	pass
+				print(Fore.GREEN+f"WORKING : '{Fore.RESET}{prx}{Fore.GREEN}'  Type: {Fore.RESET}{protocol.upper()}{Fore.GREEN}  Timeout: {Fore.RESET}"+ "%.3fs" % (time.time() - start_time) + f"{Fore.GREEN}' ..."+Fore.RESET)
+
+				if protocol == "https":
+					with open("Results/http_alive.txt","a+") as f:
+					    f.write(prx+"\n")
+
+				if protocol == "socks4":
+					with open("Results/socks4_alive.txt","a+") as f:
+					    f.write(prx+"\n")
+
+				if protocol == "socks5":
+					with open("Results/socks5_alive.txt","a+") as f:
+					    f.write(prx+"\n")
+
+			except:
+				print(Fore.RED+f"INVALID : '{Fore.RESET}{prx}{Fore.RED}' | Type: {Fore.RESET}None{Fore.RED} ..."+Fore.RESET)
+
+
 
 
 def proxy_sc():
