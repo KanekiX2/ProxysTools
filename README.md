@@ -16,8 +16,19 @@
 - py ProxyTools.py
 ```
 
+## 🔭Fonction
+--  
+### Proxys Scraper & Checker Accept all Types:
+- HTTP/S
+- SOCKS4
+- SOCKS5
+
 ## 📷 Demo  
-![DEMO](https://cdn.discordapp.com/attachments/780536336360800259/830063816385626132/unknown.png)  
+### 📷 Scrapper Demo
+![DEMO](https://cdn.discordapp.com/attachments/814116223126208602/830480354031697921/unknown.png)  
+
+### 📷 Checker Demo
+![DEMO](https://cdn.discordapp.com/attachments/814116223126208602/830480521981067315/unknown.png)  
   
 ## 💸 To support me  
 <a href="https://www.buymeacoffee.com/KanekiX2" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" ></a>
