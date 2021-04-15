@@ -23,7 +23,7 @@ def ProxyChecker(prx, site):
 		protocols = ['https', 'socks4', 'socks5']
 		for protocol in protocols:
 			try:
-				proxy = {"'"+protocol+"'": protocol+'://' +prx}
+				proxy = {protocol: f"{protocol}://{prx}"}
 
 				r = requests.get(site, proxies=proxy, timeout=1)
 
@@ -42,7 +42,8 @@ def ProxyChecker(prx, site):
 					    f.write(prx+"\n")
 
 			except:
-				print(Fore.RED+f"INVALID : '{Fore.RESET}{prx}{Fore.RED}' | Type: {Fore.RESET}None{Fore.RED} ..."+Fore.RESET)
+				pass
+				# print(Fore.RED+f"INVALID : '{Fore.RESET}{prx}{Fore.RED}'"+Fore.RESET)
 
 
 
