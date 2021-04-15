@@ -25,10 +25,10 @@
 
 ## 📷 Demo  
 ### 📷 Scrapper Demo
-![DEMO](https://cdn.discordapp.com/attachments/814116223126208602/830480354031697921/unknown.png)  
+![DEMO](https://cdn.discordapp.com/attachments/809886609717329920/832063789188382720/unknown.png)  
 
 ### 📷 Checker Demo
-![DEMO](https://cdn.discordapp.com/attachments/814116223126208602/830480521981067315/unknown.png)  
+![DEMO](https://cdn.discordapp.com/attachments/809886609717329920/832063885309116416/unknown.png)  
 
 ## 💸 To support me  
 <a href="https://www.buymeacoffee.com/KanekiX2" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" ></a>
